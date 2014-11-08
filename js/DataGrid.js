@@ -111,8 +111,10 @@ Dataface.modules.DataGrid.getEditorOptions = function(fielddef){
 		options.listClass = 'x-combo-list-small';
 		
 	}
-	if ( fielddef.Type.match(/date|timestamp/) ){
+	if ( fielddef.Type.match(/datetime|timestamp/) ){
 		options.format = 'Y-m-d H:i:s';
+	} else if (fielddef.Type.match(/date/) ){
+		options.format = 'Y-m-d';
 	} else if ( fielddef.Type.match(/time/) ){
 		options.format = 'H:i:s';
 	}
@@ -147,8 +149,10 @@ Dataface.modules.DataGrid.getRecordColumn = function(fielddef, fieldID){
 		name: fieldID,
 		type: this.getRecordColumnType(fielddef)
 	};
-	if ( fielddef.Type.match(/date|timestamp/) ){
+	if ( fielddef.Type.match(/datetime|timestamp/) ){
 		out.dateFormat = 'Y-m-d H:i:s';
+	} else if ( fielddef.Type.match(/date/) ){
+		out.dateFormat = 'Y-m-d';
 	} else if ( fielddef.Type.match(/time/) ){
 		out.dateFormat = 'H:i:s';
 	}
